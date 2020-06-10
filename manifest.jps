@@ -14,7 +14,7 @@ categories:
 - apps/e-learning
 
 globals:
-  password: ${fn.password}
+  JUPYTER_TOKEN: ${fn.password}
 
 nodes:
   nodeType: dockerengine
@@ -29,7 +29,7 @@ actions:
   setup:
     cmd[cp]: |-
       docker run -d -p 80:8888 \
-      -e JUPYTER_TOKEN=letmein \
+      -e JUPYTER_TOKEN=${globals.JUPYTER_TOKEN} \
       --name tm129test \
       --restart=always \
       ousefuldemos/tm129-robotics2020:latest
@@ -47,4 +47,4 @@ skipNodeEmails: true
     
 success: | 
   **Juyter notebook URL**: [https://${env.domain}/](https://${env.domain}/)  
-  **Token**: letmein
+  **Token**: ${globals.JUPYTER_TOKEN}
