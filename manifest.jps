@@ -22,6 +22,8 @@ nodes:
   cloudlets: 16
   extip: false
   displayName: TM129 test
+  env:
+      JUPYTER_TOKEN: ${globals.JUPYTER_TOKEN}
 
 onInstall: setup
 
