@@ -1,0 +1,50 @@
+type: install
+id: tm129test
+name: TM129 test
+homepage: https://github.com/innovationOUtside/tm129-robotics2020/
+baseUrl: https://raw.githubusercontent.com/ousefulReclaimed/tm129test/master
+logo: oi_utils.png
+
+description: 
+  text: Test notebook envt
+  
+categories:
+- apps/popular
+- apps/dev-tools
+- apps/e-learning
+
+globals:
+  password: ${fn.password}
+
+nodes:
+  nodeType: dockerengine
+  nodeGroup: cp
+  cloudlets: 16
+  extip: false
+  displayName: TM129 test
+
+onInstall: setup
+
+actions:
+  setup:
+    cmd[cp]: |-
+      docker run -d -p 80:8888 \
+      -e JUPYTER_TOKEN=${globals.password} \
+      --name tm129test \
+      --restart=always \
+      ousefuldemos/tm129-robotics2020:latest
+
+      #Checking of container is up and running 
+      until [ "`/usr/bin/docker inspect -f {{.State.Running}} tm129test`"=="true" ]; do
+        sleep 1
+        print '.'
+      done;
+
+      echo OK
+
+ssl: true
+skipNodeEmails: true
+    
+success: | 
+  **Juyter notebook URL**: [https://${env.domain}/](https://${env.domain}/)  
+  **Token**: ${globals.password}
