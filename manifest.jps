@@ -29,7 +29,7 @@ actions:
   setup:
     cmd[cp]: |-
       docker run -d -p 80:8888 \
-      -e JUPYTER_TOKEN=${globals.password} \
+      -e JUPYTER_TOKEN=letmein \
       --name tm129test \
       --restart=always \
       ousefuldemos/tm129-robotics2020:latest
@@ -47,4 +47,4 @@ skipNodeEmails: true
     
 success: | 
   **Juyter notebook URL**: [https://${env.domain}/](https://${env.domain}/)  
-  **Token**: ${globals.password}
+  **Token**: letmein
