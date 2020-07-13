@@ -1,6 +1,7 @@
 # tm129test
 test of notebook  server
 
+[![](http://img.shields.io/static/v1?label=Reclaim&message=launch&color=blue)](https://app.my.reclaim.cloud/?jps=https://github.com/ousefulReclaimed/tm129test/blob/master/manifest.jps)
 
 This repo provides a demo of a relatively straightforwrd load of a containerised environment specified via a Jelastic `manifest.jps` environment config file stored in a publis Github repo.
 
